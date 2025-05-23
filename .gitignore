@@ -5,6 +5,7 @@ __pycache__/
 venv/
 env/
 mon_env/
+.env
 
 # Et ignorer tout leur contenu
 media/Profils/*
