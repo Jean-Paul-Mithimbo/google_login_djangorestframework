@@ -6,4 +6,4 @@ dj-rest-auth[with_social]    # REST API authentication utils
 mysqlclient                  # MySQL database adapter for Python
 python-dotenv                # For loading environment variables from .env file
 requests
-cryptography
+drf-yasg                # For generating Swagger documentation

@@ -35,7 +35,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+REST_USE_JWT = True
+AUTH_USER_MODEL = 'authentification.User'
+DJREST_AUTH = {
+    # "USER_DETAILS_SERIALIZER": "dj_rest_auth.serializers.UserDetailsSerializer",
+    "REGISTER_SERIALIZER": "authentification.serializers.CustomRegisterSerializer",
+    "LOGIN_SERIALIZER": "authentification.serializers.CustomLoginSerializer",
+    "USER_DETAILS_SERIALIZER": "authentification.serializers.CustomUserDetailsSerializer",
+    "USE_JWT": True, 
+    "TOKEN_MODEL": None,
+}
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,15 +58,30 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'dj_rest_auth',
     'dj_rest_auth.registration',
 
     'allauth.socialaccount.providers.google', # <- Support Login with Google
     'authentification'
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("JWT", "Bearer"),
+    # ... autres options ...
+}
+
 # django.contrib.sites
 SITE_ID = 1
 
